@@ -25,8 +25,7 @@ public partial struct PaddleCollisionSystem : ISystem
             BallLookup = SystemAPI.GetComponentLookup<Ball>(),
             PaddleLookup = SystemAPI.GetComponentLookup<Paddle>(),
             LocalToWorldLookup = SystemAPI.GetComponentLookup<LocalToWorld>(),
-            VelocityLookup = SystemAPI.GetComponentLookup<PhysicsVelocity>(),
-            StorageInfoLookup = SystemAPI.GetEntityStorageInfoLookup()
+            VelocityLookup = SystemAPI.GetComponentLookup<PhysicsVelocity>()
         };
 
         // Jobをスケジュールし、state.DependencyにJobHandleを代入
@@ -44,14 +43,9 @@ public partial struct PaddleCollisionSystem : ISystem
         public ComponentLookup<LocalToWorld> LocalToWorldLookup;
         public ComponentLookup<PhysicsVelocity> VelocityLookup;
 
-        public EntityStorageInfoLookup StorageInfoLookup;
-
         [BurstCompile]
         public void Execute(CollisionEvent collisionEvent)
         {
-            // Entityの存在チェック
-            if (!StorageInfoLookup.Exists(collisionEvent.EntityA) || !StorageInfoLookup.Exists(collisionEvent.EntityB)) return;
-
             // 衝突したEntityの2つのうち、どちらがBallでどちらがPaddleかを判定する
             var aIsBall = BallLookup.HasComponent(collisionEvent.EntityA);
             var bIsBall = BallLookup.HasComponent(collisionEvent.EntityB);
