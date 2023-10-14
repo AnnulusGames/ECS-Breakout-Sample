@@ -1,7 +1,4 @@
 # ECS-Breakout-Sample
- ECSで作成したブロック崩しのサンプルプロジェクト
-
-## 概要
 
 <img src="https://github.com/AnnulusGames/ECS-Breakout-Sample/blob/main/Assets/Documentation~/img1.png" width="800">
 
