@@ -66,7 +66,7 @@ public partial struct PaddleCollisionSystem : ISystem
             var ballWorldPosition = LocalToWorldLookup[ballEntity].Position;
             var paddleWorldPosition = LocalToWorldLookup[paddleEntity].Position;
 
-            // 球がパドルより上にいる場合は除外
+            // 球がパドルより下にいる場合は除外
             if (ballWorldPosition.y < paddleWorldPosition.y) return;
 
             // 球がパドルの左右どちらにいるかで向きを変える
